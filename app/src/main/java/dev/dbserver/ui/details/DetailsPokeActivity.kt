@@ -32,6 +32,8 @@ class DetailsPokeActivity : AppCompatActivity() {
                 Picasso.get().load(response.body()!!.sprites.frontDefault)
                     .resize(300,300).into(imgPokemon)
 
+                txtName.append(nome_request)
+
                 txtAltura.append("Altura: ")
                 txtAltura.append(response.body()!!.height.toString())
 
