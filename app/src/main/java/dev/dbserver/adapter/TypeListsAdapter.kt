@@ -5,16 +5,15 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dev.dbserver.R
-import dev.dbserver.model.Results
+import dev.dbserver.model.Result
 import dev.dbserver.ui.list.ListTypeActivity
 import kotlinx.android.synthetic.main.type_item.view.*
 
-class TypeListsAdapter(private val types : List<Results>,
+class TypeListsAdapter(private val types : List<Result>,
                        private val context : Context) : Adapter<TypeListsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,7 +23,6 @@ class TypeListsAdapter(private val types : List<Results>,
 
     override fun getItemCount(): Int {
         return types.size
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -35,7 +33,7 @@ class TypeListsAdapter(private val types : List<Results>,
     }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        fun bindView(results: Results, context: Context){
+        fun bindView(results: Result, context: Context){
             val nome = itemView.type_name
             nome.text = results.name
 

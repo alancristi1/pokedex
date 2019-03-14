@@ -2,7 +2,7 @@ package dev.dbserver.model
 import com.google.gson.annotations.SerializedName
 
 
-data class listaTipo(
+data class ListPokeType(
     @SerializedName("damage_relations")
     val damageRelations: DamageRelations,
     @SerializedName("game_indices")
@@ -25,7 +25,7 @@ data class listaTipo(
 
 data class Pokemon(
     @SerializedName("pokemon")
-    val pokemon: List<PokemonX>,
+    val pokemon: PokemonX,
     @SerializedName("slot")
     val slot: Int
 )
@@ -40,8 +40,11 @@ data class PokemonX(
 class DamageRelations(
 )
 
-class MoveDamageClass(
-)
+class Generation()
 
-class Generation(
+data class MoveDamageClass(
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("url")
+    val url: String
 )

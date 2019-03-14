@@ -6,6 +6,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
 import dev.dbserver.R
 import dev.dbserver.adapter.TypeListsAdapter
+import dev.dbserver.model.ListType
 import dev.dbserver.model.Type
 import dev.dbserver.network.RetrofitInitializer
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,9 +22,9 @@ class MainActivity : AppCompatActivity(){
 
         val call = RetrofitInitializer().pokeService().list()
 
-        call.enqueue(object : Callback<Type> {
+        call.enqueue(object : Callback<ListType> {
 
-            override fun onResponse(call: Call<Type>, response: Response<Type>) {
+            override fun onResponse(call: Call<ListType>, response: Response<ListType>) {
                 response?.body()?.let {
                     val recyclerView = lista
                     recyclerView.adapter = TypeListsAdapter(response.body()!!.results, baseContext)
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity(){
                 }
             }
 
-            override fun onFailure(call: Call<Type>, t: Throwable) {
+            override fun onFailure(call: Call<ListType>, t: Throwable) {
                 Log.i("log faillure", t.message)
             }
         })

@@ -6,7 +6,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
 import dev.dbserver.R
 import dev.dbserver.adapter.ListPokemonsAdapter
-import dev.dbserver.model.listaTipo
+import dev.dbserver.model.ListPokeType
 import dev.dbserver.network.RetrofitInitializer
 import kotlinx.android.synthetic.main.activity_list_type.*
 import retrofit2.Call
@@ -23,20 +23,20 @@ class ListTypeActivity : AppCompatActivity() {
 
         val call = RetrofitInitializer().pokeService().listType(nome_request)
 
-        call.enqueue(object : Callback<listaTipo>{
+        call.enqueue(object : Callback<ListPokeType>{
 
-            override fun onResponse(call: Call<listaTipo>, response: Response<listaTipo>) {
+            override fun onResponse(call: Call<ListPokeType>, response: Response<ListPokeType>) {
 
-                response?.body()?.let {
-
+                response.body()?.let {
                     val recyclerView = listaPoke
-                    recyclerView.adapter = ListPokemonsAdapter(response.body(), baseContext)
+
+                    recyclerView.adapter = ListPokemonsAdapter(response.body()!!.pokemon, baseContext)
                     val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                     recyclerView.layoutManager = layoutManager
                 }
             }
 
-            override fun onFailure(call: Call<listaTipo>, t: Throwable) {
+            override fun onFailure(call: Call<ListPokeType>, t: Throwable) {
                 Log.i("log failure", t.message)
             }
         })
